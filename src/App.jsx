@@ -12,6 +12,12 @@ import ErrorPage from "./pages/ErrorPage";
 
 // layout
 import MainLayout from "./layout/MainLayout";
+import Result from "./components/Result";
+import EditQuestion from "./pages/EditQuestion";
+import Profile from "./pages/Profile";
+import TeacherDashboard from "./pages/TeacherDashboard";
+import Leaderboard from "./pages/Leaderboard";
+import ResultsOverview from "./pages/ResultsOverview";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -33,6 +39,13 @@ function App() {
         { path: "/login", element: <Login setUser={setUser} /> },
         { path: "/register", element: <Register setUser={setUser} /> },
         { path: "/dashboard", element: <Dashboard /> }, // teacher uchun
+        { path: "/result/:title", element: <Result /> }, // teacher uchun
+        { path: "/edit/:subject", element: < EditQuestion /> },
+        { path: "/profile", element: <Profile /> },
+        { path: "/teacher-dashboard", element: <TeacherDashboard /> },
+        { path: 'leaderboard', element: <Leaderboard /> },
+        { path: 'results-overview', element: <ResultsOverview  /> }
+
       ],
     },
   ]);

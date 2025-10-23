@@ -8,11 +8,16 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const savedUser = JSON.parse(localStorage.getItem("user"));
 
-    if (savedUser && savedUser.phone === phone && savedUser.password === password) {
-      localStorage.setItem("loggedUser", JSON.stringify(savedUser));
-      if (savedUser.role === "teacher") navigate("/dashboard");
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+
+    const loggedUser = users.find(
+      (u) => u.phone === phone && u.password === password
+    );
+
+    if (loggedUser) {
+      localStorage.setItem("loggedUser", JSON.stringify(loggedUser));
+      if (loggedUser.role === "teacher") navigate("/dashboard");
       else navigate("/");
     } else {
       alert("Incorrect phone number or password");
@@ -31,7 +36,7 @@ export default function Login() {
               placeholder="+998XXXXXXXXX"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-green-400 transition"
+              className="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-400"
               required
             />
           </div>
@@ -42,7 +47,7 @@ export default function Login() {
               placeholder="Your password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-green-400 transition"
+              className="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-400"
               required
             />
           </div>

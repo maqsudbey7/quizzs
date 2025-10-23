@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Register() {
   const [name, setName] = useState("");
-  const [phone, setPhone] = useState(""); // email o‘rniga phone
+  const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("student");
   const navigate = useNavigate();
@@ -11,10 +11,24 @@ export default function Register() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // Avval mavjud foydalanuvchilarni olamiz
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+
+    // Shu raqam bilan oldin ro‘yxatdan o‘tgan foydalanuvchi bormi?
+    const existingUser = users.find((u) => u.phone === phone);
+
+    if (existingUser) {
+      alert("Bu telefon raqami allaqachon ro‘yxatdan o‘tgan!");
+      return;
+    }
+
     const newUser = { name, phone, password, role };
 
-    // localStorage ga saqlaymiz
-    localStorage.setItem("user", JSON.stringify(newUser));
+    // Yangi foydalanuvchini massivga qo‘shamiz
+    users.push(newUser);
+    localStorage.setItem("users", JSON.stringify(users));
+
+    // Foydalanuvchini avtomatik login qilamiz
     localStorage.setItem("loggedUser", JSON.stringify(newUser));
 
     alert(`Welcome ${name}! Account created successfully.`);
@@ -34,7 +48,7 @@ export default function Register() {
               placeholder="Your name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-green-400 transition"
+              className="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-400"
               required
             />
           </div>
@@ -45,7 +59,7 @@ export default function Register() {
               placeholder="+998XXXXXXXXX"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-green-400 transition"
+              className="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-400"
               required
             />
           </div>
@@ -56,7 +70,7 @@ export default function Register() {
               placeholder="Your password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-green-400 transition"
+              className="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-400"
               required
             />
           </div>
@@ -65,7 +79,7 @@ export default function Register() {
             <select
               value={role}
               onChange={(e) => setRole(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-green-400 transition"
+              className="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-400"
             >
               <option value="student">Student</option>
               <option value="teacher">Teacher</option>
