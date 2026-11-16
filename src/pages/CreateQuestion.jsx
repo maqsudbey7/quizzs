@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import toast from "react-hot-toast";
+import AIQuestionGenerator from "../components/AIQuestionGenerator";
 
 export default function CreateQuestion() {
   const [subjects, setSubjects] = useState([]);
@@ -57,6 +58,14 @@ export default function CreateQuestion() {
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-6 text-indigo-700">
           🧠 Yangi Savol Qo‘shish
         </h2>
+
+        <AIQuestionGenerator
+          subject={subject === "new" ? newSubject.trim() : subject}
+          onAdded={(name) => {
+            setSubjects((prev) => (prev.includes(name) ? prev : [...prev, name]));
+            setSubject(name);
+          }}
+        />
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-5">
           {/* Fan tanlash */}

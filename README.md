@@ -63,3 +63,23 @@ Start the server
 ```bash
   npm run dev
 ```
+
+## 🤖 AI savol yaratuvchi agent
+
+"Yangi Savol Qo‘shish" sahifasida mavzu yozing → AI (Claude) tayyor test savollarini
+4 ta variant, to‘g‘ri javob va tushuntirish bilan yaratadi. Keraklilarini belgilab, fanga qo‘shasiz.
+
+- Server qismi: `api/generate-questions.js` (Vercel serverless funksiya)
+- UI: `src/components/AIQuestionGenerator.jsx`
+
+**Sozlash:**
+
+1. https://console.anthropic.com dan API kalit oling.
+2. Lokal: loyiha ildizida `.env.local` fayl yarating:
+   ```
+   ANTHROPIC_API_KEY=sk-ant-...
+   ```
+   va `npm run dev`.
+3. Vercel: Project → Settings → Environment Variables → `ANTHROPIC_API_KEY` qo‘shing va qayta deploy qiling.
+
+Kalit faqat serverda turadi, brauzerga chiqmaydi.
