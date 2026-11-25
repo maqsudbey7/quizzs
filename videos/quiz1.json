@@ -1,0 +1,14 @@
+{
+  "title": "5 ta savol - hammasini topa olasizmi?",
+  "seconds": 5,
+  "theme": "blue",
+  "outro": "Nechta topdingiz?",
+  "outro_sub": "Izohlarda yozing va obuna bo'ling!",
+  "questions": [
+    {"q": "Dunyodagi eng katta okean qaysi?", "options": ["Atlantika okeani", "Hind okeani", "Tinch okeani", "Shimoliy Muz okeani"], "answer": 2},
+    {"q": "Katta yoshli odam tanasida nechta suyak bor?", "options": ["206", "180", "250", "300"], "answer": 0},
+    {"q": "Qaysi sayyora 'Qizil sayyora' deb ataladi?", "options": ["Venera", "Mars", "Yupiter", "Saturn"], "answer": 1},
+    {"q": "Dunyodagi eng baland tog' qaysi?", "options": ["K2", "Elbrus", "Kilimanjaro", "Everest"], "answer": 3},
+    {"q": "Suv dengiz sathida necha gradusda qaynaydi?", "options": ["80 gradus", "120 gradus", "100 gradus", "90 gradus"], "answer": 2}
+  ]
+}
